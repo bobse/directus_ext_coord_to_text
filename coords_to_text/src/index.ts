@@ -3,25 +3,25 @@ import { coordsToText } from "./coordsToText";
 import { config } from "./config";
 import _ from "lodash";
 
-export default defineHook(({ filter, action }) => {
+export default defineHook(({ filter }) => {
     filter("items.create", async (input: any, { collection }) => {
-        console.log(JSON.stringify(input));
-        const inputValue = getInputFieldValue(input, config.inputField);
-        if (collection === config.collection && inputValue) {
-            const textValue = await coordsToText(inputValue);
-            setInputTargetField(input, config.targetField, textValue);
-            console.log(JSON.stringify(input));
-        }
+        await changeInput(input, collection);
         return input;
     });
 
-    filter("items.update", (input, { keys, collection }) => {
-        console.log("Item updated!");
-        console.log(keys);
-        console.log(`colection: ${collection}`);
-        console.log(`input: ${JSON.stringify(input)}`);
+    filter("items.update", async (input: any, { keys, collection }) => {
+        await changeInput(input, collection);
+        return input;
     });
 });
+
+async function changeInput(input: any, collection: string): Promise<void> {
+    const inputValue = getInputFieldValue(input, config.inputField);
+    if (collection === config.collection && inputValue) {
+        const textValue = await coordsToText(inputValue);
+        setInputTargetField(input, config.targetField, textValue);
+    }
+}
 
 function getInputFieldValue(input: any, inputField: string): any {
     // using lodash to get the inputField because it can be a nested field
