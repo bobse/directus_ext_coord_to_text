@@ -16,9 +16,10 @@ Edit `config.ts` and set:
 
 ## Instalation:
 
-1. Open package.json and set the `path` in `directus:extension` for the build.
-2. Run `npm run build`
-3. Copy the build folder to directus folder inside `/extensions/hooks`
+1. `npm install`
+2. Open package.json and set the `path` in `directus:extension` for the build.
+3. Run `npm run build`
+4. Copy the build folder to directus folder inside `/extensions/hooks`
 
 ## Important notes:
 
