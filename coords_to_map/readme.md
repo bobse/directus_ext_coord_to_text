@@ -9,7 +9,10 @@ Edit `config.ts` and set:
 ```
     collection: "<NAME OF THE COLLECTION>",
     inputField: "<NAME OF THE FIELD TO WATCH>",
-    targetField: "<NAME OF THE FIELD WHICH WILL RECIEVE THE TEXT FROM THE COORDS>",
+    targetField: "<NAME OF THE FIELD WHICH WILL RECIEVE THE MAP ID FROM
+    THE COORDS>",
+    imageFolder: "<FOLDER ID> or null",
+
 ```
 
 -   InputField and targetField can be nested fields. Example: "geometria.coordinates"
